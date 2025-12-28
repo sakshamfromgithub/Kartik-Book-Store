@@ -194,14 +194,27 @@
 
     <nav style="display:flex;align-items:center;justify-content:space-between;padding:12px 30px;">
         <div style="display:flex;align-items:center;gap:25px;">
-            <a href="#" style="font-size:18px;font-weight:700;">All Courses ▾</a>
             <a href="#">Books</a>
             <a href="#">Notes</a>
             <a href="#">Exams</a>
             <a href="#">About</a>
         </div>
-        <a href="./logsign.html" style="background:#6c63ff;padding:10px 18px;border-radius:8px;">Login / Register</a>
+
+        <div>
+            <span id="userName" style="color:white;margin-right:15px;"></span>
+
+            <a id="loginBtn" href="./logsign.html"
+                style="background:#6c63ff;padding:10px 18px;border-radius:8px;color:white;text-decoration:none;">
+                Login / Register
+            </a>
+
+            <button id="logoutBtn" onclick="logout()"
+                style="display:none;background:#ff4d4d;color:white;padding:10px 18px;border-radius:8px;border:none;">
+                Logout
+            </button>
+        </div>
     </nav>
+
 
 
 
@@ -277,9 +290,12 @@
                     <h3>NCERT PHYSICS 3</h3>
                     <p>Concept</p>
                     <p><strong>Free PDF</strong></p>
-                    <a href="pdfs/ncertphy3.pdf" download
-                        style="display:inline-block;margin-top:10px;padding:10px 16px;border-radius:8px;background:#6c63ff;color:#fff;text-decoration:none;font-weight:600;">Download
-                        PDF</a>
+                    <a href="./pdfs/ncertphy3.pdf" style="display:inline-block;margin-top:10px;padding:10px
+                    16px;border-radius:8px;background:#6c63ff;color:#fff;text-decoration:none;font-weight:600;">
+                        Download PDF
+                    </a>
+
+
                 </div>
             </div>
         </div>
@@ -297,6 +313,7 @@
     </footer>
 
 
+    <script type="module" src="main.js"></script>
 
 
 </body>
