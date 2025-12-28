@@ -9,6 +9,7 @@
         /* style.css */
 
         /* GENERAL STYLING */
+        /* GENERAL STYLING */
         body {
             margin: 0;
             padding: 0;
@@ -17,41 +18,25 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
             gap: 40px;
-            height: 100vh;
-            background: linear-gradient(135deg, #74ebd5, #ACB6E5);
-            font-family: 'Segoe UI', sans-serif;
-
+            flex-wrap: wrap;
+            /* Responsive ke liye wrap */
+            min-height: 100vh;
         }
 
+        /* CARD STYLING */
         .card {
             background: #ffffffdd;
             padding: 40px 30px;
             border-radius: 20px;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2), 0 6px 10px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2),
+                0 6px 10px rgba(0, 0, 0, 0.1);
             display: flex;
             flex-direction: column;
             gap: 15px;
             width: 300px;
             text-align: center;
-        }
-
-
-        /* CONTAINER */
-        body>div {
-            background: #ffffffdd;
-            padding: 40px 50px;
-            border-radius: 20px;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2), 0 6px 10px rgba(0, 0, 0, 0.1);
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-            width: 350px;
-            text-align: center;
+            transition: 0.3s;
         }
 
         /* INPUT FIELDS */
@@ -66,6 +51,9 @@
             box-shadow: inset 3px 3px 6px rgba(0, 0, 0, 0.1),
                 inset -3px -3px 6px rgba(255, 255, 255, 0.7);
             transition: 0.3s;
+            width: 100%;
+            /* Responsive */
+            box-sizing: border-box;
         }
 
         input[type="text"]:focus,
@@ -88,6 +76,8 @@
             box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.2),
                 -3px -3px 8px rgba(255, 255, 255, 0.3);
             transition: 0.3s;
+            width: 100%;
+            /* Responsive */
         }
 
         button:hover {
@@ -102,6 +92,35 @@
             height: 1px;
             background: #ccc;
             margin: 20px 0;
+        }
+
+        /* MEDIA QUERIES FOR RESPONSIVENESS */
+        @media screen and (max-width: 768px) {
+            body {
+                flex-direction: column;
+                gap: 20px;
+                padding: 20px;
+            }
+
+            .card {
+                width: 100%;
+                max-width: 400px;
+                padding: 30px 20px;
+            }
+        }
+
+        @media screen and (max-width: 480px) {
+            .card {
+                padding: 20px 15px;
+            }
+
+            input[type="text"],
+            input[type="email"],
+            input[type="password"],
+            button {
+                font-size: 14px;
+                padding: 12px 15px;
+            }
         }
     </style>
 </head>
