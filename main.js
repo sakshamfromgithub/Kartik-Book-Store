@@ -17,8 +17,6 @@ const firebaseConfig = {
   authDomain: "kartik-book-publication.firebaseapp.com",
   projectId: "kartik-book-publication",
   appId: "1:354471030726:web:09a2b8bebf367b35b20cc7",
-  storageBucket: "kartik-book-publication.appspot.com",
-  messagingSenderId: "354471030726",
 };
 
 // ================= INIT =================
@@ -27,55 +25,71 @@ const auth = getAuth(app);
 const db = getFirestore(app);
 
 // ================= ELEMENTS =================
-// ================= ELEMENTS =================
-// ================= ELEMENTS =================
-const uploadBtn = document.getElementById("uploadBtn");
 const loginBtn = document.getElementById("loginBtn");
 const logoutBtn = document.getElementById("logoutBtn");
 const userNameBox = document.getElementById("userName");
+const uploadBtn = document.getElementById("uploadBtn");
+
+// ================= GLOBAL USER =================
+let currentUser = null;
 
 // ================= AUTH STATE =================
 onAuthStateChanged(auth, async (user) => {
+  currentUser = user;
+
   if (user) {
-    loginBtn.style.display = "none";
-    logoutBtn.style.display = "inline-block";
+    // 🔐 LOGGED IN
+    if (loginBtn) loginBtn.style.display = "none";
+    if (logoutBtn) logoutBtn.style.display = "inline-block";
 
     const docRef = doc(db, "users", user.uid);
     const docSnap = await getDoc(docRef);
 
     if (docSnap.exists()) {
       const data = docSnap.data();
-      console.log("USER DATA:", data);
 
-      userNameBox.innerText = `Welcome, ${data.name} 👋`;
+      // 👋 Welcome text
+      if (userNameBox) {
+        userNameBox.innerText = `Welcome, ${data.name} 👋`;
+      }
 
+      // 🛡 Admin check
       if (data.role === "admin") {
         uploadBtn.style.display = "inline-block";
       } else {
         uploadBtn.style.display = "none";
       }
-
-      if (uploadBtn) {
-        uploadBtn.onclick = () => {
-          alert("Admin Upload Panel (next level 🚀)");
-        };
-      }
     }
   } else {
-    loginBtn.style.display = "inline-block";
-    logoutBtn.style.display = "none";
-    userNameBox.innerText = "";
-    uploadBtn.style.display = "none";
+    // ❌ LOGGED OUT
+    currentUser = null;
+    if (loginBtn) loginBtn.style.display = "inline-block";
+    if (logoutBtn) logoutBtn.style.display = "none";
+    if (uploadBtn) uploadBtn.style.display = "none";
+    if (userNameBox) userNameBox.innerText = "";
   }
 });
 
 // ================= LOGOUT =================
-window.logout = async () => {
+window.logout = async function () {
   await signOut(auth);
   window.location.href = "logsign.html";
 };
 
-// ================= ADMIN ACTION =================
-uploadBtn.onclick = () => {
-  alert("Admin Upload Panel 🔥");
+// ================= PDF PROTECTION =================
+window.openPDF = function (pdfName) {
+  if (!currentUser) {
+    alert("Login required to download PDF");
+    window.location.href = "logsign.html";
+    return;
+  }
+
+  window.open(`pdfs/${pdfName}`, "_blank");
 };
+
+// ================= ADMIN ACTION =================
+if (uploadBtn) {
+  uploadBtn.onclick = () => {
+    alert("Admin Upload Panel - Coming Soon!");
+  };
+}
