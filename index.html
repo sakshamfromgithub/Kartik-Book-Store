@@ -189,7 +189,7 @@
         <!-- Logo yahan lagao: logo.png -->
         <img src="logo.png" alt="Kartik Book Publication Logo" />
         <h1>Kartik Book Publication</h1>
-        <p>Students ke future ko shape dene wali books 📘✨</p>
+        <p>Students ke future ko shape dene wali books </p>
     </header>
 
     <nav style="display:flex;align-items:center;justify-content:space-between;padding:12px 30px;">
@@ -259,7 +259,7 @@
 
     <div class="container" id="home">
         <div class="card">
-            <h2>Welcome Students 🚀</h2>
+            <h2>Welcome Students</h2>
             <p>
                 Kartik Book Publication ek modern aur student-first platform hai jahan
                 quality books, notes aur guidance ek hi jagah milti hai.
@@ -275,32 +275,35 @@
         </div>
 
         <div class="card" id="books">
-            <h2>Book Store 📚</h2>
+            <h2>Book Store</h2>
             <div class="books">
                 <div class="book">
                     <h3>NCERT PHYSICS 1</h3>
                     <p>All subjects | Board focused</p>
                     <p><strong>Free PDF</strong></p>
-                    <a href="pdfs/ncertphy1.pdf" download
-                        style="display:inline-block;margin-top:10px;padding:10px 16px;border-radius:8px;background:#6c63ff;color:#fff;text-decoration:none;font-weight:600;">Download
-                        PDF</a>
+                    <button onclick="openPDF('ncertphy1.pdf')"
+                        style="display:inline-block;margin-top:10px;padding:10px 16px;border-radius:8px;background:#6c63ff;color:#fff;text-decoration:none;font-weight:600;">
+                        Download PDF
+                    </button>
                 </div>
                 <div class="book">
                     <h3>NCERT PHYSICS 2</h3>
                     <p>Concept + PYQs</p>
                     <p><strong>Free PDF</strong></p>
-                    <a href="pdfs/ncertphy2.pdf" download
-                        style="display:inline-block;margin-top:10px;padding:10px 16px;border-radius:8px;background:#6c63ff;color:#fff;text-decoration:none;font-weight:600;">Download
-                        PDF</a>
+                    <button onclick="openPDF('ncertphy2.pdf')"
+                        style="display:inline-block;margin-top:10px;padding:10px 16px;border-radius:8px;background:#6c63ff;color:#fff;text-decoration:none;font-weight:600;">
+                        Download PDF
+                    </button>
                 </div>
                 <div class="book">
                     <h3>NCERT PHYSICS 3</h3>
                     <p>Concept</p>
                     <p><strong>Free PDF</strong></p>
-                    <a href="./pdfs/ncertphy3.pdf" style="display:inline-block;margin-top:10px;padding:10px
-                    16px;border-radius:8px;background:#6c63ff;color:#fff;text-decoration:none;font-weight:600;">
+                    <button onclick="openPDF('ncertphy3.pdf')"
+                        style="display:inline-block;margin-top:10px;padding:10px 16px;border-radius:8px;background:#6c63ff;color:#fff;text-decoration:none;font-weight:600;">
                         Download PDF
-                    </a>
+                    </button>
+
 
 
                 </div>
@@ -316,6 +319,8 @@
         <p>Phone: +91 XXXXX XXXXX</p>
     </div>
     </div>
+
+    <input type="file" id="pdfInput" accept="application/pdf" style="display:none;">
 
     <footer>
         <p>© 2025 Kartik Book Publication | Designed for Students</p>
