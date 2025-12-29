@@ -93,3 +93,65 @@ if (uploadBtn) {
     alert("Admin Upload Panel - Coming Soon!");
   };
 }
+
+import {
+  signInWithEmailAndPassword,
+  createUserWithEmailAndPassword,
+} from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+
+import { setDoc } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+
+// modal open/close
+window.openLoginModal = () => {
+  document.getElementById("loginModal").style.display = "flex";
+};
+
+window.closeLoginModal = () => {
+  document.getElementById("loginModal").style.display = "none";
+};
+
+// switch login/signup
+window.showSignup = () => {
+  document.getElementById("loginBox").style.display = "none";
+  document.getElementById("signupBox").style.display = "block";
+};
+
+window.showLogin = () => {
+  document.getElementById("signupBox").style.display = "none";
+  document.getElementById("loginBox").style.display = "block";
+};
+
+// LOGIN
+window.loginUser = async () => {
+  const email = loginEmail.value;
+  const password = loginPassword.value;
+
+  try {
+    await signInWithEmailAndPassword(auth, email, password);
+    closeLoginModal();
+  } catch (e) {
+    alert(e.message);
+  }
+};
+
+// SIGNUP
+window.signupUser = async () => {
+  const name = signupName.value;
+  const email = signupEmail.value;
+  const password = signupPassword.value;
+
+  try {
+    const res = await createUserWithEmailAndPassword(auth, email, password);
+
+    await setDoc(doc(db, "users", res.user.uid), {
+      name: name,
+      email: email,
+      role: "user",
+      createdAt: new Date(),
+    });
+
+    closeLoginModal();
+  } catch (e) {
+    alert(e.message);
+  }
+};
