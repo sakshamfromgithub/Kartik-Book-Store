@@ -4,11 +4,15 @@ import {
   getAuth,
   onAuthStateChanged,
   signOut,
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
 } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+
 import {
   getFirestore,
   doc,
   getDoc,
+  setDoc,
 } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
 // ================= FIREBASE CONFIG =================
@@ -73,14 +77,16 @@ onAuthStateChanged(auth, async (user) => {
 // ================= LOGOUT =================
 window.logout = async function () {
   await signOut(auth);
-  window.location.href = "logsign.html";
+  // window.location.href = "logsign.html";
+  openModal();
 };
 
 // ================= PDF PROTECTION =================
 window.openPDF = function (pdfName) {
   if (!currentUser) {
     alert("Login required to download PDF");
-    window.location.href = "logsign.html";
+    // window.location.href = "logsign.html";
+    openModal();
     return;
   }
 
@@ -94,51 +100,40 @@ if (uploadBtn) {
   };
 }
 
-import {
-  signInWithEmailAndPassword,
-  createUserWithEmailAndPassword,
-} from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+const modal = document.getElementById("authModal");
+const signupBox = document.getElementById("signupBox");
+const loginBox = document.getElementById("loginBox");
 
-import { setDoc } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
-
-// modal open/close
-window.openLoginModal = () => {
-  document.getElementById("loginModal").style.display = "flex";
+window.openModal = function () {
+  modal.style.display = "flex";
+  signupBox.style.display = "block";
+  loginBox.style.display = "none";
 };
 
-window.closeLoginModal = () => {
-  document.getElementById("loginModal").style.display = "none";
+window.closeModal = function () {
+  modal.style.display = "none";
 };
 
-// switch login/signup
-window.showSignup = () => {
-  document.getElementById("loginBox").style.display = "none";
-  document.getElementById("signupBox").style.display = "block";
+window.showLogin = function () {
+  signupBox.style.display = "none";
+  loginBox.style.display = "block";
 };
 
-window.showLogin = () => {
-  document.getElementById("signupBox").style.display = "none";
-  document.getElementById("loginBox").style.display = "block";
+window.showSignup = function () {
+  loginBox.style.display = "none";
+  signupBox.style.display = "block";
 };
 
-// LOGIN
-window.loginUser = async () => {
-  const email = loginEmail.value;
-  const password = loginPassword.value;
+// ================= SIGNUP =================
+window.signup = async function () {
+  const name = document.getElementById("signupName").value;
+  const email = document.getElementById("signupEmail").value;
+  const password = document.getElementById("signupPassword").value;
 
-  try {
-    await signInWithEmailAndPassword(auth, email, password);
-    closeLoginModal();
-  } catch (e) {
-    alert(e.message);
+  if (!name || !email || !password) {
+    alert("All fields required");
+    return;
   }
-};
-
-// SIGNUP
-window.signupUser = async () => {
-  const name = signupName.value;
-  const email = signupEmail.value;
-  const password = signupPassword.value;
 
   try {
     const res = await createUserWithEmailAndPassword(auth, email, password);
@@ -147,11 +142,31 @@ window.signupUser = async () => {
       name: name,
       email: email,
       role: "user",
-      createdAt: new Date(),
+      createdAt: Date.now(),
     });
 
-    closeLoginModal();
-  } catch (e) {
-    alert(e.message);
+    alert("Signup successful 🎉");
+    closeModal();
+  } catch (err) {
+    alert(err.message);
+  }
+};
+// ================= LOGIN FUNCTION =================
+
+window.login = async function () {
+  const email = document.getElementById("loginEmail").value;
+  const password = document.getElementById("loginPassword").value;
+
+  if (!email || !password) {
+    alert("Email aur Password dono bharo");
+    return;
+  }
+
+  try {
+    await signInWithEmailAndPassword(auth, email, password);
+    alert("Login successful 🎉");
+    closeModal(); // agar modal use ho raha hai
+  } catch (error) {
+    alert(error.message);
   }
 };
