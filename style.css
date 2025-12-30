@@ -172,3 +172,55 @@ a:hover {
   width: 100%;
   height: auto;
 }
+.modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-box {
+  background: #fff;
+  padding: 25px;
+  width: 320px;
+  border-radius: 12px;
+  position: relative;
+}
+
+.modal-box h2 {
+  text-align: center;
+}
+
+.modal-box input {
+  width: 100%;
+  padding: 10px;
+  margin: 8px 0;
+}
+
+.modal-box button {
+  width: 100%;
+  padding: 10px;
+  background: #6c63ff;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.modal-box span {
+  color: #6c63ff;
+  cursor: pointer;
+}
+
+.closeBtn {
+  position: absolute;
+  top: 8px;
+  right: 10px;
+  background: none;
+  color: #333;
+  font-size: 18px;
+}
