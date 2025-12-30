@@ -170,3 +170,11 @@ window.login = async function () {
     alert(error.message);
   }
 };
+
+window.signup = signup;
+window.login = login;
+window.openModal = openModal;
+window.closeModal = closeModal;
+window.showLogin = showLogin;
+window.showSignup = showSignup;
+
