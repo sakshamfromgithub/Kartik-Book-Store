@@ -41,13 +41,12 @@ The platform focuses on **student-first learning**, simple explanations, and eas
 ## 📂 Project Structure
 
 ├── index.html
-├── logsign.html
 ├── main.js
 ├── style.css
 ├── /pdfs
-│ ├── physics1.pdf
-│ ├── physics2.pdf
-│ └── physics3.pdf
+│ ├── ncertphy1.pdf
+│ ├── ncertphy2.pdf
+│ └── ncertphy3.pdf
 ├── /pages
 │ ├── privacy-policy.html
 │ ├── terms.html
