@@ -82,4 +82,8 @@ This website follows Google AdSense policies by:
 - Clone the repository
 git clone https://github.com/sakshamfromgithub/kartik-book-publication.git
 
+📄 License
+
+This project is for educational purposes.
+All rights reserved © 2026 Kartik Book Publication
 
