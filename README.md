@@ -67,7 +67,7 @@ The platform focuses on **student-first learning**, simple explanations, and eas
 
 ---
 
-## 📢 AdSense Compliance
+##  AdSense Compliance
 
 This website follows Google AdSense policies by:
 - Providing original educational content
@@ -77,7 +77,7 @@ This website follows Google AdSense policies by:
 
 ---
 
-## 🚀 How to Run Locally
+##  How to Run Locally
 
 - Clone the repository
 git clone https://github.com/sakshamfromgithub/Kartik-Book-Store.git
